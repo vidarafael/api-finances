@@ -5,6 +5,7 @@ import { goalsRoute } from "../../../../modules/goals/infra/http/routes/goals.ro
 import { investmentsRoute } from "../../../../modules/investments/infra/http/routes/investments.routes";
 import { usersRoute } from "../../../../modules/users/infra/http/routes/users.routes";
 import { videosRoute } from "../../../../modules/videos/infra/http/routes/videos.routes";
+import { walletRoute } from "../../../../modules/wallets/infra/http/routes/wallets.routes";
 
 const router = Router()
 
@@ -14,5 +15,6 @@ router.use("/goals", goalsRoute)
 router.use("/investments", investmentsRoute)
 router.use("/users", usersRoute)
 router.use("/videos", videosRoute)
+router.use("/wallets", walletRoute)
 
 export { router }

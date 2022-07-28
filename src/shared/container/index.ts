@@ -11,6 +11,8 @@ import { UsersRepository } from "../../modules/users/infra/typeorm/repositories/
 import { IUsersRepository } from "../../modules/users/repositories/IUsersRepository";
 import { VideosRepository } from "../../modules/videos/infra/typeorm/repositories/VideosRepository";
 import { IVideosRepository } from "../../modules/videos/repositories/IVideosRepository";
+import { WalletsRepository } from "../../modules/wallets/infra/typeorm/repositories/WalletsRepository";
+import { IWalletsRepository } from "../../modules/wallets/repositories/IWalletsRepository";
 
 container.registerSingleton<ICommentaryRepository>(
   "CommentaryRepository",
@@ -40,4 +42,9 @@ container.registerSingleton<IGoalsRepository>(
 container.registerSingleton<IInvestmentsRepository>(
   "InvestmentsRepository",
   InvestmentsRepository
+)
+
+container.registerSingleton<IWalletsRepository>(
+  "WalletsRepository",
+  WalletsRepository
 )
