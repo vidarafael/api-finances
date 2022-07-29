@@ -21,7 +21,13 @@ class WalletsRepository implements IWalletsRepository {
   }
 
   async findByUserId(user_id: string): Promise<ICreateWalletDTO> {
-    const wallet = this.repository.findOneBy({ user_id })
+    const wallet = await this.repository.findOneBy({ user_id })
+
+    return wallet
+  }
+
+  async findById(id: string): Promise<ICreateWalletDTO> {
+    const wallet = await this.repository.findOneBy({ id })
 
     return wallet
   }
