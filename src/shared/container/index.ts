@@ -7,6 +7,8 @@ import { GoalsRepository } from "../../modules/goals/infra/typeorm/repositories/
 import { IGoalsRepository } from "../../modules/goals/repositories/IGoalsRepository";
 import { InvestmentsRepository } from "../../modules/investments/infra/typeorm/repositories/InvestmentsRepository";
 import { IInvestmentsRepository } from "../../modules/investments/repositories/IInvestmentsRepository";
+import { TransactionsInvestmentsRepository } from "../../modules/transactions_investments/infra/typeorm/repositories/TransactionsInvestmentsRepository";
+import { ITransactionsInvestmentsRepository } from "../../modules/transactions_investments/repositories/ITransactionsWalletsRepository";
 import { TransactionsWalletsRepository } from "../../modules/transactions_wallets/infra/typeorm/repositories/TransactionsWalletsRepository";
 import { ITransactionsWalletsRepository } from "../../modules/transactions_wallets/repositories/ITransactionsWalletsRepository";
 import { UsersRepository } from "../../modules/users/infra/typeorm/repositories/UsersRepository";
@@ -54,4 +56,9 @@ container.registerSingleton<IWalletsRepository>(
 container.registerSingleton<ITransactionsWalletsRepository>(
   "TransactionsWalletsRepository",
   TransactionsWalletsRepository
+)
+
+container.registerSingleton<ITransactionsInvestmentsRepository>(
+  "TransactionsInvestmentsRepository",
+  TransactionsInvestmentsRepository
 )
