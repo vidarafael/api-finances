@@ -1,4 +1,4 @@
-# API Finances
+<h1 align="center">API FINANCES</h1>
 
 <img src="diagramaAPIFinances.png">
 
@@ -29,6 +29,7 @@
 ## Rotas
 - **POST** -> Criar carteira.
 - **GET** -> Buscar carteira pelo usuário e suas transações.
+- **DELETE**
 
 <hr/>
 
@@ -46,6 +47,7 @@
 ## Rotas
 - **POST** -> Criar transação.
 - **GET** -> Buscar todas transações pela carteira.
+- **DELETE**
 
 <br/>
 <br/>
@@ -61,6 +63,7 @@
 ## Rotas
 - **POST** -> Criar investimento.
 - **GET** -> Buscar todos investimentos pela meta.
+- **DELETE**
 
 <hr/>
 
@@ -77,6 +80,7 @@
 ## Rotas
 - **POST** -> Criar transação de investimento.
 - **GET** -> Buscar todas transações de investimento pelo investimento.
+- **DELETE**
 
 <hr/>
 
@@ -93,6 +97,7 @@
 - **POST** -> Criar meta.
 - **GET** -> Buscar todas as metas pelo usuario.
 - **GET** -> Buscar meta pelo id da meta passada.
+- **DELETE**
  
 <hr/>
 
@@ -118,6 +123,7 @@ Os vídeos serão adicionados pelo back-end
 ## Rotas
 - **POST** -> Criar comentário.
 - **GET** -> Buscar todos os comentários pelo usuário e o vídeo.
+- **DELETE**
 
 <hr/>
 
@@ -135,6 +141,7 @@ Os vídeos serão adicionados pelo back-end
 ## Rotas
 - **POST** -> adicionar vídeo favorito.
 - **GET** -> Buscar todos os vídeos favoritos usuário.
+- **DELETE**
 
 <hr/>
  
