@@ -1,4 +1,4 @@
-export interface ICreateCommentaryDTO {
+export interface ICommentaryDTO {
   id?: string;
   description: string;
   video_id: string;

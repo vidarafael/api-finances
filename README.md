@@ -121,9 +121,9 @@ Os vídeos serão adicionados pelo back-end
 - Verificar se id do video passado existe
 
 ## Rotas
-- **POST** -> Criar comentário.
-- **GET** -> Buscar todos os comentários pelo usuário e o vídeo.
-- **DELETE**
+- **POST** -> Criar comentário. ✔
+- **GET** -> Buscar todos os comentários vídeo. ✔
+- **DELETE** ✔
 
 <hr/>
 

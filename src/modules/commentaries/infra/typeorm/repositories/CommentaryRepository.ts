@@ -1,6 +1,6 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../../../data-source"
-import { ICreateCommentaryDTO } from "../../../dtos/ICreateCommentaryDTO"
+import { ICommentaryDTO } from "../../../dtos/ICommentaryDTO"
 import { ICommentaryRepository } from "../../../repositories/ICommentaryRepository"
 import { Commentary } from "../entities/Commentary"
 
@@ -11,12 +11,22 @@ class CommentaryRepository implements ICommentaryRepository {
     this.repository = AppDataSource.getRepository(Commentary)
   }
 
-  async create({ user_id, video_id, description }: ICreateCommentaryDTO): Promise<Commentary> {
+  async create({ user_id, video_id, description }: ICommentaryDTO): Promise<Commentary> {
     const commentary = this.repository.create({ user_id, video_id, description })
 
     await this.repository.save(commentary)
 
     return commentary
+  }
+
+  async listCommentariesByVideo(video_id: string): Promise<ICommentaryDTO[]> {
+    const commentaries = await this.repository.findBy({ video_id })
+
+    return commentaries
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete(id)
   }
 }
 

@@ -11,10 +11,16 @@ class VideosRepository implements IVideosRepository {
     this.repository = AppDataSource.getRepository(Video);
   }
 
-  async create({ url, category }: ICreateVideoDTO): Promise<ICreateVideoDTO> {
+  async create({ url, category }: ICreateVideoDTO): Promise<Video> {
     const video = this.repository.create({ url, category })
 
     await this.repository.save(video);
+
+    return video
+  }
+
+  async findById(id: string): Promise<Video> {
+    const video = await this.repository.findOneBy({ id })
 
     return video
   }
