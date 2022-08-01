@@ -8,64 +8,94 @@
 - Verificar se já usuário existe, caso sim lançar erro.
 
 <br/>
+
+## Rotas
+- **POST** -> Criar usuário.
+- **POST** -> Autenticar usuário.
+
+<hr/>
+
 <br/>
 <br/>
 
 # Wallet (Carteira)
 
 **RN**
-- Verificar se usuário existe
+- Verificar se usuário existe.
 - Verificar se carteira já existe, caso exista lançar erro.
+
+<br/>
+
+## Rotas
+- **POST** -> Criar carteira.
+- **GET** -> Buscar carteira pelo usuário e suas transações.
 
 <hr/>
 
-<br/>
 <br/>
 <br/>
 
 # Wallet transactions (Transações da Carteira)
 
 **RN**
-- Verificar se carteira existe
+- Verificar se carteira existe.
 
-<hr/>
 
 <br/>
+
+## Rotas
+- **POST** -> Criar transação.
+- **GET** -> Buscar todas transações pela carteira.
+
 <br/>
 <br/>
 
 # Investments (Investimentos)
 
 **RN**
-- Verificar se meta existe
+- Verificar se meta existe.
+
+
+<br/>
+
+## Rotas
+- **POST** -> Criar investimento.
+- **GET** -> Buscar todos investimentos pela meta.
 
 <hr/>
 
 <br/>
 <br/>
-<br/>
 
-# Investments transactions  (Transações de Investimentos)
+# Investments transactions (Transações de Investimentos)
 
 **RN**
-- Verificar se investimento existe
+- Verificar se investimento existe.
+
+<br/>
+
+## Rotas
+- **POST** -> Criar transação de investimento.
+- **GET** -> Buscar todas transações de investimento pelo investimento.
 
 <hr/>
 
-<br/>
 <br/>
 <br/>
 
 # Goals (Metas)
  
 **RN**
-- Verificar se usuário existe
+- Verificar se usuário existe.
 - Verificar se já existe uma meta com o mesmo nome, caso exista lançar erro.
 
+## Rotas
+- **POST** -> Criar meta.
+- **GET** -> Buscar todas as metas pelo usuario.
+- **GET** -> Buscar meta pelo id da meta passada.
  
 <hr/>
 
-<br/>
 <br/>
 <br/>
 
@@ -85,6 +115,10 @@ Os vídeos serão adicionados pelo back-end
 - Verificar se usuário existe
 - Verificar se id do video passado existe
 
+## Rotas
+- **POST** -> Criar comentário.
+- **GET** -> Buscar todos os comentários pelo usuário e o vídeo.
+
 <hr/>
 
 <br/>
@@ -98,7 +132,9 @@ Os vídeos serão adicionados pelo back-end
 - Verificar se id do video passado existe
 - Verificar se o vídeo já foi adicionado aos favoritos, caso sim lançar erro.
 
-
+## Rotas
+- **POST** -> adicionar vídeo favorito.
+- **GET** -> Buscar todos os vídeos favoritos usuário.
 
 <hr/>
  
