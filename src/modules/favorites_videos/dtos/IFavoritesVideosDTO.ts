@@ -1,4 +1,4 @@
-export interface ICreateFavoritesVideosDTO {
+export interface IFavoritesVideosDTO {
   id?: string;
   user_id: string;
   video_id: string;

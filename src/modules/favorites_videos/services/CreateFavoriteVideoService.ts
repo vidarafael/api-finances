@@ -1,5 +1,7 @@
 import { inject, injectable } from "tsyringe";
-import { ICreateFavoritesVideosDTO } from "../dtos/ICreateFavoritesVideosDTO";
+import { IUsersRepository } from "../../users/repositories/IUsersRepository";
+import { IVideosRepository } from "../../videos/repositories/IVideosRepository";
+import { IFavoritesVideosDTO } from "../dtos/IFavoritesVideosDTO";
 import { IFavoritesVideosRepository } from "../repositories/IFavoritesVideosRepository";
 
 interface IRequest {
@@ -11,13 +13,34 @@ interface IRequest {
 class CreateFavoriteVideoService {
   constructor(
     @inject("FavoritesVideosRepository")
-    private favoritesVideosRepository: IFavoritesVideosRepository
+    private favoritesVideosRepository: IFavoritesVideosRepository,
+
+    @inject("UsersRepository")
+    private usersRepository: IUsersRepository,
+
+    @inject("VideosRepository")
+    private videosRepository: IVideosRepository,
   ) { }
 
-  async execute({ user_id, video_id }: IRequest): Promise<ICreateFavoritesVideosDTO> {
-    // TODO: verificar ser user existe
-    // TODO: verificar se video existe
-    // TODO: verificar se o user_id passado ja possui um favoriteVideo com o video_id passado, se existir lançar um erro
+  async execute({ user_id, video_id }: IRequest): Promise<IFavoritesVideosDTO> {
+    const userAlreadyExists = await this.usersRepository.findById(user_id)
+
+    if (!userAlreadyExists) {
+      throw new Error("User not found")
+    }
+
+    const videoAlreadyExists = await this.videosRepository.findById(video_id)
+
+    if (!videoAlreadyExists) {
+      throw new Error("Video not found")
+    }
+
+    const favoriteVideoAlreadyExists = await this.favoritesVideosRepository.findByUserAndVideo({ user_id, video_id })
+
+    if (favoriteVideoAlreadyExists) {
+      throw new Error("Favorite video already exists")
+    }
+
     const favoriteVideo = await this.favoritesVideosRepository.create({ user_id, video_id })
 
     return favoriteVideo

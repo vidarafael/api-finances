@@ -114,16 +114,16 @@ Os vídeos serão adicionados pelo back-end
 <br/>
 <br/>
 
-# Commentarys (Comentários)
+# Commentarys (Comentários) ✅
 
 **RN**
 - Verificar se usuário existe
 - Verificar se id do video passado existe
 
 ## Rotas
-- **POST** -> Criar comentário. ✔
-- **GET** -> Buscar todos os comentários vídeo. ✔
-- **DELETE** ✔
+- **POST** -> Criar comentário. ✅
+- **GET** -> Buscar todos os comentários vídeo. ✅
+- **DELETE** ✅
 
 <hr/>
 
@@ -131,7 +131,7 @@ Os vídeos serão adicionados pelo back-end
 <br/>
 <br/>
 
-# Favorite_Videos (Videos Favoritos)
+# Favorite_Videos (Videos Favoritos) ✅
 
 **RN**
 - Verificar se usuário existe
@@ -139,9 +139,9 @@ Os vídeos serão adicionados pelo back-end
 - Verificar se o vídeo já foi adicionado aos favoritos, caso sim lançar erro.
 
 ## Rotas
-- **POST** -> adicionar vídeo favorito.
-- **GET** -> Buscar todos os vídeos favoritos usuário.
-- **DELETE**
+- **POST** -> adicionar vídeo favorito. ✅
+- **GET** -> Buscar todos os vídeos favoritos usuário. ✅
+- **DELETE** ✅
 
 <hr/>
  
