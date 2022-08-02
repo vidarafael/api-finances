@@ -1,6 +1,7 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../../../data-source"
 import { ICommentaryDTO } from "../../../dtos/ICommentaryDTO"
+import { IDeleteCommentaryDTO } from "../../../dtos/IDeleteCommentaryDTO"
 import { ICommentaryRepository } from "../../../repositories/ICommentaryRepository"
 import { Commentary } from "../entities/Commentary"
 
@@ -25,8 +26,8 @@ class CommentaryRepository implements ICommentaryRepository {
     return commentaries
   }
 
-  async delete(id: string): Promise<void> {
-    await this.repository.delete(id)
+  async delete({ id, user_id }: IDeleteCommentaryDTO): Promise<void> {
+    await this.repository.delete({ id, user_id })
   }
 }
 

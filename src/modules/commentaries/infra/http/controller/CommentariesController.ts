@@ -32,11 +32,12 @@ class CommentariesController {
   }
 
   async delete(request: Request, response: Response): Promise<void> {
+    const { id: user_id } = request.user
     const { commentary_id } = request.params
 
     const deleteCommentaryService = container.resolve(DeleteCommentaryService)
 
-    await deleteCommentaryService.execute(commentary_id)
+    await deleteCommentaryService.execute({ user_id, commentary_id })
 
     response.status(200).send()
   }

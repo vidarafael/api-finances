@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../../data-source";
+import { IDeleteFavoritesVideosDTO } from "../../../dtos/IDeleteFavoritesVideosDTO";
 import { IFavoritesVideosDTO } from "../../../dtos/IFavoritesVideosDTO";
 import { IFavoritesVideosRepository } from "../../../repositories/IFavoritesVideosRepository";
 import { FavoriteVideo } from "../entities/FavoriteVideo";
@@ -31,8 +32,8 @@ class FavoritesVideosRepository implements IFavoritesVideosRepository {
     return favoritesVideos
   }
 
-  async delete(id: string): Promise<void> {
-    await this.repository.delete(id)
+  async delete({ id, user_id }: IDeleteFavoritesVideosDTO): Promise<void> {
+    await this.repository.delete({ id, user_id })
   }
 }
 

@@ -1,16 +1,30 @@
 import { inject, injectable } from "tsyringe";
+import { IUsersRepository } from "../../users/repositories/IUsersRepository";
 import { ICommentaryRepository } from "../repositories/ICommentaryRepository";
 
+interface IRequest {
+  user_id: string;
+  commentary_id: string;
+}
 
 @injectable()
 class DeleteCommentaryService {
   constructor(
     @inject("CommentaryRepository")
     private commentaryRepository: ICommentaryRepository,
+
+    @inject("UsersRepository")
+    private usersRepository: IUsersRepository,
   ) { }
 
-  async execute(id: string): Promise<void> {
-    await this.commentaryRepository.delete(id)
+  async execute({ user_id, commentary_id }: IRequest): Promise<void> {
+    const userAlreadyExists = await this.usersRepository.findById(user_id)
+
+    if (!userAlreadyExists) {
+      throw new Error("User not found")
+    }
+
+    await this.commentaryRepository.delete({ id: commentary_id, user_id })
   }
 }
 

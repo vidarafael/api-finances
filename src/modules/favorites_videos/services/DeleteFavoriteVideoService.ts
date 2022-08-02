@@ -24,7 +24,7 @@ class DeleteFavoriteVideoService {
       throw new Error("User not found")
     }
 
-    await this.favoritesVideosRepository.delete(favorite_video_id)
+    await this.favoritesVideosRepository.delete({ id: favorite_video_id, user_id })
   }
 }
 
