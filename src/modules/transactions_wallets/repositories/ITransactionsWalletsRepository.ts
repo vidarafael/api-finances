@@ -8,6 +8,8 @@ interface ITransactionsWalletsRepository {
     category,
     description
   }: ICreateTransactionsWalletsDTO): Promise<ITransactionsWalletsDTO>
+  findByWallet(wallet_id: string): Promise<ITransactionsWalletsDTO[]>
+  delete(id: string): Promise<void>
 }
 
 export { ITransactionsWalletsRepository }

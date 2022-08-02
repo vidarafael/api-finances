@@ -36,7 +36,7 @@
 <br/>
 <br/>
 
-# Wallet transactions (Transações da Carteira)
+# Wallet transactions (Transações da Carteira) ✅
 
 **RN**
 - Verificar se carteira existe.
@@ -45,9 +45,9 @@
 <br/>
 
 ## Rotas
-- **POST** -> Criar transação.
-- **GET** -> Buscar todas transações pela carteira.
-- **DELETE**
+- **POST** -> Criar transação. ✅
+- **GET** -> Buscar todas transações pela carteira. ✅
+- **DELETE** ✅
 
 <br/>
 <br/>
@@ -71,7 +71,7 @@
 <br/>
 <br/>
 
-# Investments transactions (Transações de Investimentos)
+# Investments transactions (Transações de Investimentos) ✅
 
 **RN**
 - Verificar se investimento existe.
@@ -79,9 +79,9 @@
 <br/>
 
 ## Rotas
-- **POST** -> Criar transação de investimento.
-- **GET** -> Buscar todas transações de investimento pelo investimento.
-- **DELETE**
+- **POST** -> Criar transação de investimento. ✅
+- **GET** -> Buscar todas transações de investimento pelo investimento. ✅
+- **DELETE** ✅
 
 <hr/>
 

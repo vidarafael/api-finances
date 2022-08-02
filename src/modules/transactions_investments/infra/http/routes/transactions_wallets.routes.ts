@@ -2,7 +2,6 @@ import { Router } from "express";
 import { ensureAuthenticated } from "../../../../../shared/infra/http/middlewares/ensureAuthenticated";
 import { TransactionsInvestmentsController } from "../controllers/TransactionsInvestmentsController";
 
-
 const transactionsInvestmentsRoute = Router()
 const transactionsInvestmentsController = new TransactionsInvestmentsController()
 

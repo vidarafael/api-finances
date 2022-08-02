@@ -35,8 +35,6 @@ class TransactionsInvestmentsController {
 
     response.status(200).send()
   }
-
-
 }
 
 export { TransactionsInvestmentsController }
