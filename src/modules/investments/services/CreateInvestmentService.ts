@@ -1,12 +1,12 @@
 import { inject, injectable } from "tsyringe";
 import { IGoalsRepository } from "../../goals/repositories/IGoalsRepository";
-import { ICreateInvestmentDTO } from "../dtos/ICreateInvestmentDTO";
+import { IInvestmentDTO } from "../dtos/IInvestmentDTO";
 import { IInvestmentsRepository } from "../repositories/IInvestmentsRepository";
 
 interface IRequest {
   value: number;
   dayOfInvestment: Date;
-  goals_id: string;
+  goal_id: string;
   priority: string;
 }
 
@@ -20,14 +20,20 @@ class CreateInvestmentService {
     private goalsRepository: IGoalsRepository,
   ) { }
 
-  async execute({ value, dayOfInvestment, goals_id, priority }: IRequest): Promise<ICreateInvestmentDTO> {
-    const goalAlreadyExists = await this.goalsRepository.findById(goals_id);
+  async execute({ value, dayOfInvestment, goal_id, priority }: IRequest): Promise<IInvestmentDTO> {
+    const goalAlreadyExists = await this.goalsRepository.findById(goal_id);
 
     if (!goalAlreadyExists) {
       throw new Error("Goal not found")
     }
 
-    const investment = await this.investmentRepository.create({ value, dayOfInvestment, goals_id, priority })
+    const investmentAlreadyExists = await this.investmentRepository.findByGoal(goal_id)
+
+    if (investmentAlreadyExists) {
+      throw new Error("Investment already exists")
+    }
+
+    const investment = await this.investmentRepository.create({ value, dayOfInvestment, goal_id, priority })
 
     return investment
   }

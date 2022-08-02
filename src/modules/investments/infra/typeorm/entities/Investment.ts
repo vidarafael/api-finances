@@ -13,7 +13,7 @@ class Investment {
   dayOfInvestment: Date;
 
   @Column()
-  goals_id: string;
+  goal_id: string;
 
   @Column()
   priority: string;

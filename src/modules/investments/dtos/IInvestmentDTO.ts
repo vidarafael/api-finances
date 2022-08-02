@@ -1,11 +1,11 @@
-interface ICreateInvestmentDTO {
+interface IInvestmentDTO {
   id?: string;
   value: number;
   dayOfInvestment: Date;
-  goals_id: string;
+  goal_id: string;
   priority: string;
   created_at?: Date;
   updated_at?: Date;
 }
 
-export { ICreateInvestmentDTO }
+export { IInvestmentDTO }

@@ -1,14 +1,15 @@
-import { ICreateInvestmentDTO } from "../dtos/ICreateInvestmentDTO"
+import { IInvestmentDTO } from "../dtos/IInvestmentDTO"
 
 interface IInvestmentsRepository {
   create({
     value,
     dayOfInvestment,
-    goals_id,
+    goal_id,
     priority
-  }: ICreateInvestmentDTO): Promise<ICreateInvestmentDTO>
-
-  findById(id: string): Promise<ICreateInvestmentDTO>
+  }: IInvestmentDTO): Promise<IInvestmentDTO>
+  findById(id: string): Promise<IInvestmentDTO>
+  findByGoal(goal_id: string): Promise<IInvestmentDTO>
+  delete(id: string): Promise<void>
 }
 
 export { IInvestmentsRepository }

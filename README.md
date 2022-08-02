@@ -52,17 +52,18 @@
 <br/>
 <br/>
 
-# Investments (Investimentos)
+# Investments (Investimentos) ✅
 
 **RN**
 - Verificar se meta existe.
+- Verificar se esse investimento já foi criado com a meta passada.
 
 
 <br/>
 
 ## Rotas
-- **POST** -> Criar investimento.
-- **GET** -> Buscar todos investimentos pela meta.
+- **POST** -> Criar investimento. ✅
+- **GET** -> Buscar o investimentos pela meta. ✅
 - **DELETE**
 
 <hr/>
@@ -97,7 +98,7 @@
 - **POST** -> Criar meta. ✅
 - **GET** -> Buscar todas as metas pelo usuario. ✅
 - **GET** -> Buscar meta pelo id da meta passada. ✅
-- **DELETE**
+- **DELETE** ✅
  
 <hr/>
 

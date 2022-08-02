@@ -1,6 +1,6 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../../../data-source"
-import { ICreateInvestmentDTO } from "../../../dtos/ICreateInvestmentDTO"
+import { IInvestmentDTO } from "../../../dtos/IInvestmentDTO"
 import { IInvestmentsRepository } from "../../../repositories/IInvestmentsRepository"
 import { Investment } from "../entities/Investment"
 
@@ -11,18 +11,28 @@ class InvestmentsRepository implements IInvestmentsRepository {
     this.repository = AppDataSource.getRepository(Investment)
   }
 
-  async create({ value, dayOfInvestment, priority, goals_id }: ICreateInvestmentDTO): Promise<Investment> {
-    const investment = this.repository.create({ value, dayOfInvestment, priority, goals_id })
+  async create({ value, dayOfInvestment, priority, goal_id }: IInvestmentDTO): Promise<Investment> {
+    const investment = this.repository.create({ value, dayOfInvestment, priority, goal_id })
 
     await this.repository.save(investment)
 
     return investment
   }
 
-  async findById(id: string): Promise<ICreateInvestmentDTO> {
-    const investment = this.repository.findOneBy({ id })
+  async findById(id: string): Promise<IInvestmentDTO> {
+    const investment = await this.repository.findOneBy({ id })
 
     return investment
+  }
+
+  async findByGoal(goal_id: string): Promise<IInvestmentDTO> {
+    const investment = await this.repository.findOneBy({ goal_id })
+
+    return investment
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete({ id })
   }
 }
 
