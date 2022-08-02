@@ -1,4 +1,4 @@
-interface ICreateGoalDTO {
+interface IGoalDTO {
   id?: string;
   name: string;
   user_id?: string;
@@ -7,4 +7,4 @@ interface ICreateGoalDTO {
   updated_at?: Date;
 }
 
-export { ICreateGoalDTO }
+export { IGoalDTO }

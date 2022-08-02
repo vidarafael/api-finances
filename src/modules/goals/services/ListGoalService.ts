@@ -3,14 +3,8 @@ import { IUsersRepository } from "../../users/repositories/IUsersRepository";
 import { IGoalDTO } from "../dtos/IGoalDTO";
 import { IGoalsRepository } from "../repositories/IGoalsRepository";
 
-interface IRequest {
-  name: string;
-  amount: number;
-  user_id?: string;
-}
-
 @injectable()
-class CreateGoalService {
+class ListGoalService {
   constructor(
     @inject("GoalsRepository")
     private goalsRepository: IGoalsRepository,
@@ -19,17 +13,17 @@ class CreateGoalService {
     private usersRepository: IUsersRepository,
   ) { }
 
-  async execute({ name, amount, user_id }: IRequest): Promise<IGoalDTO> {
+  async execute(user_id: string): Promise<IGoalDTO[]> {
     const userAlreadyExists = await this.usersRepository.findById(user_id);
 
     if (!userAlreadyExists) {
       throw new Error("User not found");
     }
 
-    const goal = await this.goalsRepository.create({ name, amount, user_id })
+    const goals = await this.goalsRepository.list(user_id)
 
-    return goal
+    return goals
   }
 }
 
-export { CreateGoalService }
+export { ListGoalService }

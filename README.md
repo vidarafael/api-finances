@@ -87,16 +87,16 @@
 <br/>
 <br/>
 
-# Goals (Metas)
+# Goals (Metas) ✅
  
 **RN**
 - Verificar se usuário existe.
 - Verificar se já existe uma meta com o mesmo nome, caso exista lançar erro.
 
 ## Rotas
-- **POST** -> Criar meta.
-- **GET** -> Buscar todas as metas pelo usuario.
-- **GET** -> Buscar meta pelo id da meta passada.
+- **POST** -> Criar meta. ✅
+- **GET** -> Buscar todas as metas pelo usuario. ✅
+- **GET** -> Buscar meta pelo id da meta passada. ✅
 - **DELETE**
  
 <hr/>
