@@ -7,6 +7,8 @@ interface ITransactionsInvestmentsRepository {
     value,
     description
   }: ICreateTransactionsInvestmentsDTO): Promise<ITransactionsInvestmentsDTO>
+  findByInvestment(investment_id: string): Promise<ITransactionsInvestmentsDTO[]>
+  delete(id: string): Promise<void>
 }
 
 export { ITransactionsInvestmentsRepository }

@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../../data-source";
 import { ICreateTransactionsInvestmentsDTO } from "../../../dto/ICreateTransactionsInvestmentsDTO";
+import { ITransactionsInvestmentsDTO } from "../../../dto/ITransactionsInvestmentsDTO";
 import { ITransactionsInvestmentsRepository } from "../../../repositories/ITransactionsWalletsRepository";
 import { TransactionInvestment } from "../entity/TransactionInvestment";
 
@@ -17,6 +18,16 @@ class TransactionsInvestmentsRepository implements ITransactionsInvestmentsRepos
     await this.repository.save(transactionInvestment)
 
     return transactionInvestment
+  }
+
+  async findByInvestment(investment_id: string): Promise<ITransactionsInvestmentsDTO[]> {
+    const transactionsInvestments = await this.repository.findBy({ investment_id })
+
+    return transactionsInvestments
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete({ id })
   }
 }
 

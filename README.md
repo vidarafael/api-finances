@@ -64,7 +64,7 @@
 ## Rotas
 - **POST** -> Criar investimento. ✅
 - **GET** -> Buscar o investimentos pela meta. ✅
-- **DELETE**
+- **DELETE** ✅
 
 <hr/>
 
