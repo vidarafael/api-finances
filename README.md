@@ -2,7 +2,7 @@
 
 <img src="diagramaAPIFinances.png">
 
-# User (Usuário)
+# User (Usuário) ✅
 
 **RN**
 - Verificar se já usuário existe, caso sim lançar erro.
@@ -10,15 +10,15 @@
 <br/>
 
 ## Rotas
-- **POST** -> Criar usuário.
-- **POST** -> Autenticar usuário.
+- **POST** -> Criar usuário. ✅ 
+- **POST** -> Autenticar usuário. ✅
 
 <hr/>
 
 <br/>
 <br/>
 
-# Wallet (Carteira)
+# Wallet (Carteira) ✅
 
 **RN**
 - Verificar se usuário existe.
@@ -27,9 +27,9 @@
 <br/>
 
 ## Rotas
-- **POST** -> Criar carteira.
-- **GET** -> Buscar carteira pelo usuário e suas transações.
-- **DELETE**
+- **POST** -> Criar carteira. ✅
+- **GET** -> Buscar carteira pelo usuário e suas transações. ✅
+- **DELETE** ✅
 
 <hr/>
 
@@ -105,7 +105,7 @@
 <br/>
 <br/>
 
-# Videos
+# Videos ✅
 
 Os vídeos serão adicionados pelo back-end
 

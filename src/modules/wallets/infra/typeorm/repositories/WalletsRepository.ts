@@ -31,6 +31,10 @@ class WalletsRepository implements IWalletsRepository {
 
     return wallet
   }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete({ id })
+  }
 }
 
 export { WalletsRepository }
