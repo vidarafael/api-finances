@@ -1,5 +1,5 @@
 import { inject, injectable } from "tsyringe";
-import { ICreateVideoDTO } from "../dtos/ICreateVideoDTO";
+import { IVideoDTO } from "../dtos/IVideoDTO";
 import { CategoryType } from "../infra/typeorm/entities/Video";
 import { IVideosRepository } from "../repositories/IVideosRepository";
 
@@ -15,7 +15,7 @@ class CreateVideoService {
     private videosRepository: IVideosRepository
   ) { }
 
-  async execute({ url, category }: IRequest): Promise<ICreateVideoDTO> {
+  async execute({ url, category }: IRequest): Promise<IVideoDTO> {
     const video = await this.videosRepository.create({ url, category });
 
     return video

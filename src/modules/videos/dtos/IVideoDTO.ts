@@ -1,6 +1,6 @@
 import { CategoryType } from "../infra/typeorm/entities/Video";
 
-export interface ICreateVideoDTO {
+export interface IVideoDTO {
   id?: string;
   url: string;
   category: CategoryType;

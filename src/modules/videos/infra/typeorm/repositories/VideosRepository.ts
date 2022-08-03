@@ -1,6 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../../data-source";
-import { ICreateVideoDTO } from "../../../dtos/ICreateVideoDTO";
+import { IVideoDTO } from "../../../dtos/IVideoDTO";
 import { IVideosRepository } from "../../../repositories/IVideosRepository";
 import { Video } from "../entities/Video";
 
@@ -11,7 +11,7 @@ class VideosRepository implements IVideosRepository {
     this.repository = AppDataSource.getRepository(Video);
   }
 
-  async create({ url, category }: ICreateVideoDTO): Promise<Video> {
+  async create({ url, category }: IVideoDTO): Promise<Video> {
     const video = this.repository.create({ url, category })
 
     await this.repository.save(video);
@@ -24,6 +24,13 @@ class VideosRepository implements IVideosRepository {
 
     return video
   }
+
+  async find(): Promise<IVideoDTO[]> {
+    const videos = await this.repository.find()
+
+    return videos
+  }
+
 }
 
 export { VideosRepository }
