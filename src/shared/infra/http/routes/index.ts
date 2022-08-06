@@ -3,7 +3,7 @@ import { commentariesRoute } from "../../../../modules/commentaries/infra/http/r
 import { favoritesVideosRoute } from "../../../../modules/favorites_videos/infra/http/routes/favorites_videos.routes";
 import { goalsRoute } from "../../../../modules/goals/infra/http/routes/goals.routes";
 import { investmentsRoute } from "../../../../modules/investments/infra/http/routes/investments.routes";
-import { transactionsInvestmentsRoute } from "../../../../modules/transactions_investments/infra/http/routes/transactions_wallets.routes";
+import { transactionsInvestmentsRoute } from "../../../../modules/transactions_investments/infra/http/routes/transactions_investments.routes";
 import { transactionsWalletsRoute } from "../../../../modules/transactions_wallets/infra/http/routes/transactions_wallets.routes";
 import { usersRoute } from "../../../../modules/users/infra/http/routes/users.routes";
 import { videosRoute } from "../../../../modules/videos/infra/http/routes/videos.routes";
