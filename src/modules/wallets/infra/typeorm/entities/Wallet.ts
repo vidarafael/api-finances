@@ -14,7 +14,7 @@ class Wallet {
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User;
 
-  @Column({ type: "varchar" })
+  @Column({ type: "numeric" })
   value: number;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
