@@ -12,10 +12,10 @@ export enum CategoryType {
 
 @Entity("videos")
 class Video {
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "varchar" })
   id: string;
 
-  @Column()
+  @Column({ type: "varchar" })
   url: string;
 
   @Column({
@@ -25,10 +25,10 @@ class Video {
   })
   category: CategoryType;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   updated_at: Date;
 
   constructor() {

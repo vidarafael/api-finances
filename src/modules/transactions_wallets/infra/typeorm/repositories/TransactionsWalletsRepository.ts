@@ -3,7 +3,7 @@ import { AppDataSource } from "../../../../../data-source";
 import { ICreateTransactionsWalletsDTO } from "../../../dto/ICreateTransactionsWalletsDTO";
 import { ITransactionsWalletsDTO } from "../../../dto/ITransactionsWalletsDTO";
 import { ITransactionsWalletsRepository } from "../../../repositories/ITransactionsWalletsRepository";
-import { TransactionWallet } from "../entity/TransactionWallet";
+import { TransactionWallet } from "../entities/TransactionWallet";
 
 class TransactionsWalletsRepository implements ITransactionsWalletsRepository {
   private repository: Repository<TransactionWallet>
@@ -18,6 +18,16 @@ class TransactionsWalletsRepository implements ITransactionsWalletsRepository {
     await this.repository.save(transactionWallet)
 
     return transactionWallet
+  }
+
+  async findByWallet(wallet_id: string): Promise<ITransactionsWalletsDTO[]> {
+    const transactionsWallet = await this.repository.findBy({ wallet_id })
+
+    return transactionsWallet
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.repository.delete({ id })
   }
 }
 

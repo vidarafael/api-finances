@@ -20,7 +20,7 @@ class CommentaryRepository implements ICommentaryRepository {
     return commentary
   }
 
-  async listCommentariesByVideo(video_id: string): Promise<ICommentaryDTO[]> {
+  async listCommentariesByVideo(video_id: string): Promise<Commentary[]> {
     const commentaries = await this.repository.findBy({ video_id })
 
     return commentaries

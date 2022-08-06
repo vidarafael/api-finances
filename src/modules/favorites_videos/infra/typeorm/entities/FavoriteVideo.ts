@@ -1,21 +1,31 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { User } from "../../../../users/infra/typeorm/entities/User";
+import { Video } from "../../../../videos/infra/typeorm/entities/Video";
 
-@Entity()
+@Entity("favorites_videos")
 class FavoriteVideo {
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "varchar" })
   id: string;
 
-  @Column()
-  user_id: string; // TODO: verificar no OAUTH se o id do usuário é uma string ou number. Criar relacionamento
+  @Column({ type: "varchar" })
+  video_id: string;
 
-  @Column()
-  video_id: string; // TODO: Criar relacionamento
+  @OneToOne(() => Video, { cascade: true })
+  @JoinColumn({ name: "video_id", referencedColumnName: "id" })
+  video: Video;
 
-  @CreateDateColumn()
+  @Column({ type: "varchar" })
+  user_id: string;
+
+  @ManyToOne(() => User, { cascade: true })
+  @JoinColumn({ name: "user_id", referencedColumnName: "id" })
+  user: User;
+
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   updated_at: Date;
 
   constructor() {

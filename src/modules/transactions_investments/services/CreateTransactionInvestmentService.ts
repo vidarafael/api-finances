@@ -7,6 +7,7 @@ interface IRequest {
   investment_id: string;
   value: number;
   description: string;
+  category: string;
 }
 
 @injectable()
@@ -19,14 +20,14 @@ class CreateTransactionInvestmentService {
     private transactionsInvestmentsRepository: ITransactionsInvestmentsRepository,
   ) { }
 
-  async execute({ investment_id, value, description }: IRequest): Promise<ITransactionsInvestmentsDTO> {
+  async execute({ investment_id, value, description, category }: IRequest): Promise<ITransactionsInvestmentsDTO> {
     const investmentAlreadyExists = await this.investmentsRepository.findById(investment_id);
 
     if (!investmentAlreadyExists) {
       throw new Error("Investment does not exist")
     }
 
-    const transactionInvestment = await this.transactionsInvestmentsRepository.create({ investment_id, value, description })
+    const transactionInvestment = await this.transactionsInvestmentsRepository.create({ investment_id, value, description, category })
 
     return transactionInvestment
   }

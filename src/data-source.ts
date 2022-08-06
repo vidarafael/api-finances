@@ -10,8 +10,7 @@ export const AppDataSource = new DataSource({
     database: "api_finances_tcc",
     synchronize: true,
     logging: false,
-    entities: ["./src/modules/**/infra/typeorm/entities/*.ts"],
-    migrations: [],
+    entities: [__dirname + "/modules/**/infra/typeorm/entities/*.{ts,js}"],
+    migrations: [__dirname + "/shared/infra/typeorm/migrations/*.{ts,js}"],
     subscribers: [],
-
 })

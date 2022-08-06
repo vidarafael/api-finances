@@ -1,22 +1,21 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 
-@Entity()
+@Entity("users")
 class User {
-
-  @PrimaryColumn()
+  @PrimaryColumn({ type: "varchar" })
   id: string;
 
-  @Column()
+  @Column({ type: "varchar", unique: true })
   email: string;
 
-  @Column()
+  @Column({ type: "varchar" })
   name: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;
 
-  @UpdateDateColumn()
+  @UpdateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   updated_at: Date;
 
   constructor() {
