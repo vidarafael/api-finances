@@ -1,5 +1,3 @@
-
-
 interface ICreateWalletDTO {
   id?: string;
   value?: number;

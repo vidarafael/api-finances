@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe"
+import { AppError } from "../../../shared/errors/AppError"
 import { IUsersRepository } from "../../users/repositories/IUsersRepository"
 import { IFavoritesVideosDTO } from "../dtos/IFavoritesVideosDTO"
 import { IFavoritesVideosRepository } from "../repositories/IFavoritesVideosRepository"
@@ -17,7 +18,7 @@ class ListFavoriteVideoService {
     const userAlreadyExists = await this.usersRepository.findById(user_id)
 
     if (!userAlreadyExists) {
-      throw new Error("User not found")
+      throw new AppError("User not found")
     }
 
     const favoritesVideos = await this.favoritesVideosRepository.listByUser(user_id)

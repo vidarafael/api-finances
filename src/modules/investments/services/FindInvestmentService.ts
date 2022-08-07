@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../shared/errors/AppError";
 import { IInvestmentDTO } from "../dtos/IInvestmentDTO";
 import { IInvestmentsRepository } from "../repositories/IInvestmentsRepository";
 
@@ -13,7 +14,7 @@ class FindInvestmentService {
     const investment = await this.investmentRepository.findById(investment_id)
 
     if (!investment) {
-      throw new Error("Investment not found")
+      throw new AppError("Investment not found")
     }
 
     return investment

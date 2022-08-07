@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../shared/errors/AppError";
 import { IVideosRepository } from "../../videos/repositories/IVideosRepository";
 import { ICommentaryDTO } from "../dtos/ICommentaryDTO";
 import { ICommentaryRepository } from "../repositories/ICommentaryRepository";
@@ -17,7 +18,7 @@ class ListCommentaryService {
     const videoAlreadyExists = await this.videosRepository.findById(video_id)
 
     if (!videoAlreadyExists) {
-      throw new Error("Video not found");
+      throw new AppError("Video not found");
     }
 
     const commentaries = await this.commentaryRepository.listCommentariesByVideo(video_id)

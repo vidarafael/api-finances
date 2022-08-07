@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../../data-source";
 import { ICreateWalletDTO } from "../../../dtos/ICreateWalletDTO";
+import { IUpdateWalletDTO } from "../../../dtos/IUpdateWalletDTO";
 import { IWalletsRepository } from "../../../repositories/IWalletsRepository";
 import { Wallet } from "../entities/Wallet";
 
@@ -34,6 +35,13 @@ class WalletsRepository implements IWalletsRepository {
 
   async delete(id: string): Promise<void> {
     await this.repository.delete({ id })
+  }
+
+  async update({ id, value }: IUpdateWalletDTO): Promise<void> {
+    await this.repository.save({
+      id,
+      value
+    })
   }
 }
 

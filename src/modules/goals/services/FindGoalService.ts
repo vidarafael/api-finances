@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../shared/errors/AppError";
 import { IUsersRepository } from "../../users/repositories/IUsersRepository";
 import { IGoalDTO } from "../dtos/IGoalDTO";
 import { IGoalsRepository } from "../repositories/IGoalsRepository";
@@ -22,7 +23,7 @@ class FindGoalService {
     const userAlreadyExists = await this.usersRepository.findById(user_id);
 
     if (!userAlreadyExists) {
-      throw new Error("User not found");
+      throw new AppError("User not found");
     }
 
     const goals = await this.goalsRepository.findByIdAndUser({ id: goal_id, user_id })

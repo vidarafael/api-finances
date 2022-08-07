@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../shared/errors/AppError";
 import { IInvestmentsRepository } from "../../investments/repositories/IInvestmentsRepository";
 import { ITransactionsInvestmentsDTO } from "../dto/ITransactionsInvestmentsDTO";
 import { ITransactionsInvestmentsRepository } from "../repositories/ITransactionsWalletsRepository";
@@ -17,7 +18,7 @@ class ListTransactionsInvestmentsService {
     const investmentAlreadyExists = await this.investmentsRepository.findById(investment_id);
 
     if (!investmentAlreadyExists) {
-      throw new Error("Investment does not exist")
+      throw new AppError("Investment does not exist")
     }
 
     const transactionsInvestments = await this.transactionsInvestmentsRepository.findByInvestment(investment_id)

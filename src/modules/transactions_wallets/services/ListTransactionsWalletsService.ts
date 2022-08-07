@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../shared/errors/AppError";
 import { IWalletsRepository } from "../../wallets/repositories/IWalletsRepository";
 import { ITransactionsWalletsDTO } from "../dto/ITransactionsWalletsDTO";
 import { ITransactionsWalletsRepository } from "../repositories/ITransactionsWalletsRepository";
@@ -18,7 +19,7 @@ class ListTransactionsWalletsService {
     const walletAlreadyExists = await this.walletsRepository.findById(wallet_id);
 
     if (!walletAlreadyExists) {
-      throw new Error("Wallet does not exist")
+      throw new AppError("Wallet does not exist")
     }
 
     const transactionsWallets = this.transactionsWalletsRepository.findByWallet(wallet_id)

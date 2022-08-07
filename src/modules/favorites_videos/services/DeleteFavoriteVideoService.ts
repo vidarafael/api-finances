@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe"
+import { AppError } from "../../../shared/errors/AppError";
 import { IUsersRepository } from "../../users/repositories/IUsersRepository"
 import { IFavoritesVideosRepository } from "../repositories/IFavoritesVideosRepository"
 
@@ -21,7 +22,7 @@ class DeleteFavoriteVideoService {
     const userAlreadyExists = await this.usersRepository.findById(user_id)
 
     if (!userAlreadyExists) {
-      throw new Error("User not found")
+      throw new AppError("User not found")
     }
 
     await this.favoritesVideosRepository.delete({ id: favorite_video_id, user_id })

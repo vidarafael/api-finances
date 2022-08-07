@@ -13,7 +13,7 @@ async function ensureAuthenticated(request: Request, response: Response, next: N
   const usersRepository = new UsersRepository()
 
   if (!authHeaders) {
-    throw new Error("Token missing")
+    throw new AppError("Token missing")
   }
 
   const [, token] = authHeaders.split(" ")
@@ -27,7 +27,7 @@ async function ensureAuthenticated(request: Request, response: Response, next: N
     const user = await usersRepository.findById(user_id)
 
     if (!user) {
-      throw new Error("User does not exists")
+      throw new AppError("User does not exists")
     }
 
     request.user = {
@@ -36,7 +36,7 @@ async function ensureAuthenticated(request: Request, response: Response, next: N
 
     next()
   } catch (error) {
-    throw new Error("Invalid token")
+    throw new AppError("Invalid token")
   }
 }
 

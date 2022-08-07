@@ -12,8 +12,14 @@ class TransactionsInvestmentsRepository implements ITransactionsInvestmentsRepos
     this.repository = AppDataSource.getRepository(TransactionInvestment)
   }
 
-  async create({ investment_id, value, description, category }: ICreateTransactionsInvestmentsDTO): Promise<TransactionInvestment> {
-    const transactionInvestment = this.repository.create({ investment_id, value, description, category })
+  async create({ investment_id, value, description, category, type }: ICreateTransactionsInvestmentsDTO): Promise<TransactionInvestment> {
+    const transactionInvestment = this.repository.create({
+      investment_id,
+      value,
+      description,
+      category,
+      type
+    })
 
     await this.repository.save(transactionInvestment)
 

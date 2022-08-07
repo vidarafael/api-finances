@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../shared/errors/AppError";
 import { IUsersRepository } from "../../users/repositories/IUsersRepository";
 import { IVideosRepository } from "../../videos/repositories/IVideosRepository";
 import { IFavoritesVideosDTO } from "../dtos/IFavoritesVideosDTO";
@@ -26,19 +27,19 @@ class CreateFavoriteVideoService {
     const userAlreadyExists = await this.usersRepository.findById(user_id)
 
     if (!userAlreadyExists) {
-      throw new Error("User not found")
+      throw new AppError("User not found")
     }
 
     const videoAlreadyExists = await this.videosRepository.findById(video_id)
 
     if (!videoAlreadyExists) {
-      throw new Error("Video not found")
+      throw new AppError("Video not found")
     }
 
     const favoriteVideoAlreadyExists = await this.favoritesVideosRepository.findByUserAndVideo({ user_id, video_id })
 
     if (favoriteVideoAlreadyExists) {
-      throw new Error("Favorite video already exists")
+      throw new AppError("Favorite video already exists")
     }
 
     const favoriteVideo = await this.favoritesVideosRepository.create({ user_id, video_id })

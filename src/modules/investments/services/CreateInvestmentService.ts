@@ -1,4 +1,5 @@
 import { inject, injectable } from "tsyringe";
+import { AppError } from "../../../shared/errors/AppError";
 import { IGoalsRepository } from "../../goals/repositories/IGoalsRepository";
 import { IInvestmentDTO } from "../dtos/IInvestmentDTO";
 import { IInvestmentsRepository } from "../repositories/IInvestmentsRepository";
@@ -24,13 +25,13 @@ class CreateInvestmentService {
     const goalAlreadyExists = await this.goalsRepository.findById(goal_id);
 
     if (!goalAlreadyExists) {
-      throw new Error("Goal not found")
+      throw new AppError("Goal not found")
     }
 
     const investmentAlreadyExists = await this.investmentRepository.findByGoal(goal_id)
 
     if (investmentAlreadyExists) {
-      throw new Error("Investment already exists")
+      throw new AppError("Investment already exists")
     }
 
     const investment = await this.investmentRepository.create({ value, dayOfInvestment, goal_id, priority })

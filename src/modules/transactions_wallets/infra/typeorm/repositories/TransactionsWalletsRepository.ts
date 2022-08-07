@@ -12,8 +12,8 @@ class TransactionsWalletsRepository implements ITransactionsWalletsRepository {
     this.repository = AppDataSource.getRepository(TransactionWallet)
   }
 
-  async create({ wallet_id, value, category, description }: ICreateTransactionsWalletsDTO): Promise<ITransactionsWalletsDTO> {
-    const transactionWallet = this.repository.create({ wallet_id, value, category, description })
+  async create({ wallet_id, value, category, description, type }: ICreateTransactionsWalletsDTO): Promise<ITransactionsWalletsDTO> {
+    const transactionWallet = this.repository.create({ wallet_id, value, category, description, type })
 
     await this.repository.save(transactionWallet)
 

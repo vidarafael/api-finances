@@ -7,11 +7,11 @@ import { ListTransactionsInvestmentsService } from '../../../services/ListTransa
 class TransactionsInvestmentsController {
   async create(request: Request, response: Response) {
     const { investment_id } = request.params
-    const { value, description, category } = request.body
+    const { value, description, category, type } = request.body
 
     const createTransactionInvestmentService = container.resolve(CreateTransactionInvestmentService)
 
-    const transactionInvestments = await createTransactionInvestmentService.execute({ investment_id, value, description, category })
+    const transactionInvestments = await createTransactionInvestmentService.execute({ investment_id, value, description, category, type })
 
     response.status(201).json(transactionInvestments)
   }

@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { OperationType } from "../../../../../shared/dto/IOperationTypeDTO";
 import { Investment } from "../../../../investments/infra/typeorm/entities/Investment";
 
 @Entity("investments_transactions")
@@ -22,6 +23,13 @@ class TransactionInvestment {
   @ManyToOne(() => Investment)
   @JoinColumn({ name: "investment_id", referencedColumnName: "id" })
   investment: Investment;
+
+  @Column({
+    type: "enum",
+    enum: OperationType,
+    default: OperationType.DEPOSIT
+  })
+  type: OperationType;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;

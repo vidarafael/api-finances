@@ -7,11 +7,11 @@ import { ListTransactionsWalletsService } from '../../../services/ListTransactio
 class TransactionsWalletsController {
   async create(request: Request, response: Response) {
     const { wallet_id } = request.params
-    const { value, category, description } = request.body
+    const { value, category, description, type } = request.body
 
     const createTransactionsWalletsService = container.resolve(CreateTransactionsWalletsService)
 
-    const transactionWallet = await createTransactionsWalletsService.execute({ wallet_id, value, category, description })
+    const transactionWallet = await createTransactionsWalletsService.execute({ wallet_id, value, category, description, type })
 
     response.status(201).json(transactionWallet)
   }
