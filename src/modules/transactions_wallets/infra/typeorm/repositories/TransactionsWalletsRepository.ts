@@ -29,6 +29,19 @@ class TransactionsWalletsRepository implements ITransactionsWalletsRepository {
   async delete(id: string): Promise<void> {
     await this.repository.delete({ id })
   }
+
+  async getTotalValue(wallet_id: string): Promise<number> {
+    const transactionsWallets = await this.repository.findBy({ wallet_id })
+
+    const totalValue = transactionsWallets.reduce((acc, transaction) => {
+      if (transaction.type === 'deposit') {
+        return acc + transaction.value
+      }
+      return acc - transaction.value
+    }, 0)
+
+    return totalValue
+  }
 }
 
 export { TransactionsWalletsRepository }

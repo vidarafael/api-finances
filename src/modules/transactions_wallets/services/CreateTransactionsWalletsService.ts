@@ -32,7 +32,8 @@ class CreateTransactionsWalletsService {
 
     const transactionWallet = await this.transactionsWalletsRepository.create({ wallet_id, value, category, description, type })
 
-    // await this.walletsRepository.update({ id: wallet_id, value })
+    const totalValueOfTransactionsWallets = await this.transactionsWalletsRepository.getTotalValue(wallet_id)
+    await this.walletsRepository.update({ id: wallet_id, value: totalValueOfTransactionsWallets })
 
     return transactionWallet
   }

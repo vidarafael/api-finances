@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { ColumnNumericTransformer } from "../../../../../shared/transformers/ColumnNumericTransformer";
 import { User } from "../../../../users/infra/typeorm/entities/User";
 
 @Entity("wallets")
@@ -14,7 +15,7 @@ class Wallet {
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User;
 
-  @Column({ type: "numeric" })
+  @Column({ type: "numeric", transformer: new ColumnNumericTransformer() })
   value: number;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })

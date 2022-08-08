@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { ColumnNumericTransformer } from "../../../../../shared/transformers/ColumnNumericTransformer";
 import { Goal } from "../../../../goals/infra/typeorm/entities/Goal";
 
 @Entity("investments")
@@ -7,7 +8,7 @@ class Investment {
   @PrimaryColumn({ type: "varchar" })
   id: string;
 
-  @Column({ type: "numeric" })
+  @Column({ type: "numeric", transformer: new ColumnNumericTransformer() })
   value: number;
 
   @Column({ type: "timestamp" })

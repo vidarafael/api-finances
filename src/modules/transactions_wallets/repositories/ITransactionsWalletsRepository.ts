@@ -11,6 +11,7 @@ interface ITransactionsWalletsRepository {
   }: ICreateTransactionsWalletsDTO): Promise<ITransactionsWalletsDTO>
   findByWallet(wallet_id: string): Promise<ITransactionsWalletsDTO[]>
   delete(id: string): Promise<void>
+  getTotalValue(wallet_id: string): Promise<number>
 }
 
 export { ITransactionsWalletsRepository }

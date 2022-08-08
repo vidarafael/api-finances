@@ -1,5 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
+import { ColumnNumericTransformer } from "../../../../../shared/transformers/ColumnNumericTransformer";
 import { User } from "../../../../users/infra/typeorm/entities/User";
 
 @Entity("goals")
@@ -10,7 +11,7 @@ class Goal {
   @Column({ type: "varchar" })
   name: string;
 
-  @Column({ type: "numeric" })
+  @Column({ type: "numeric", transformer: new ColumnNumericTransformer() })
   amount: number;
 
   @Column({ type: "varchar" })

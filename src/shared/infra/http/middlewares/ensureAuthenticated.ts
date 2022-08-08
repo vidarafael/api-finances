@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express'
 import { verify } from 'jsonwebtoken'
 import auth from '../../../../configs/auth'
 import { UsersRepository } from '../../../../modules/users/infra/typeorm/repositories/UsersRepository'
+import { AppError } from '../../../errors/AppError';
 
 interface IPayload {
   sub: string;
