@@ -17,7 +17,7 @@ class Investment {
   @Column({ type: "varchar" })
   goal_id: string;
 
-  @OneToOne(() => Goal)
+  @OneToOne(() => Goal, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: "goal_id", referencedColumnName: "id" })
   goal: Goal;
 

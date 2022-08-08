@@ -17,7 +17,7 @@ class Goal {
   @Column({ type: "varchar" })
   user_id: string;
 
-  @ManyToOne(() => User, { cascade: true })
+  @ManyToOne(() => User, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User;
 

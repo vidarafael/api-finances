@@ -11,7 +11,7 @@ class Wallet {
   @Column({ type: "varchar" })
   user_id: string;
 
-  @OneToOne(() => User, { cascade: true })
+  @OneToOne(() => User, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User;
 

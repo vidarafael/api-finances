@@ -28,7 +28,7 @@ class TransactionWallet {
   })
   type: OperationType;
 
-  @ManyToOne(() => Wallet, { onDelete: 'CASCADE' })
+  @ManyToOne(() => Wallet, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: "wallet_id" })
   wallet: Wallet;
 
