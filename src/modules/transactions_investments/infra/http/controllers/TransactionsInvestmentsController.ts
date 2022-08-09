@@ -21,7 +21,7 @@ class TransactionsInvestmentsController {
 
     const listTransactionsInvestmentsService = container.resolve(ListTransactionsInvestmentsService)
 
-    const transactionsInvestments = listTransactionsInvestmentsService.execute(investment_id)
+    const transactionsInvestments = await listTransactionsInvestmentsService.execute(investment_id)
 
     response.status(200).json(transactionsInvestments)
   }
