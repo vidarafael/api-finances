@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
-import { ColumnNumericTransformer } from "../../../../../shared/transformers/ColumnNumericTransformer";
+import { ColumnNumericTransformer } from "../../../../../shared/infra/typeorm/transformers/ColumnNumericTransformer";
 import { User } from "../../../../users/infra/typeorm/entities/User";
 
 @Entity("wallets")

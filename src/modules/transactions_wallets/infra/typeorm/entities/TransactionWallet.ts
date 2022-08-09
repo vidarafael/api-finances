@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { OperationType } from "../../../../../shared/dto/IOperationTypeDTO";
-import { ColumnNumericTransformer } from "../../../../../shared/transformers/ColumnNumericTransformer";
+import { ColumnNumericTransformer } from "../../../../../shared/infra/typeorm/transformers/ColumnNumericTransformer";
 import { Wallet } from "../../../../wallets/infra/typeorm/entities/Wallet";
 
 @Entity("wallets_transactions")
