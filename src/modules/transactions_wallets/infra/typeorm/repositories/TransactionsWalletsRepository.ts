@@ -42,6 +42,12 @@ class TransactionsWalletsRepository implements ITransactionsWalletsRepository {
 
     return totalValue
   }
+
+  async findById(id: string): Promise<ITransactionsWalletsDTO> {
+    const transactionWallet = await this.repository.findOneBy({ id })
+
+    return transactionWallet
+  }
 }
 
 export { TransactionsWalletsRepository }
