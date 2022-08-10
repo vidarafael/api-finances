@@ -10,6 +10,8 @@ class UsersRepositoryInMemory implements IUsersRepository {
 
     Object.assign(user, { email, name });
 
+    this.users.push(user);
+
     return user
   }
 
