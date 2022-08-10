@@ -29,9 +29,7 @@ class CommentaryRepositoryInMemory implements ICommentaryRepository {
 
   async delete({ id, user_id }: IDeleteCommentaryDTO): Promise<void> {
     const commentaryIndex = this.commentaries.findIndex(commentary => commentary.id === id && commentary.user_id === user_id)
-    const newCommentaries = this.commentaries.splice(commentaryIndex, 1)
-
-    this.commentaries = newCommentaries
+    this.commentaries.splice(commentaryIndex, 1)
   }
 
 }
