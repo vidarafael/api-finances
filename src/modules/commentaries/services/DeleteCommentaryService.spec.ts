@@ -6,7 +6,7 @@ import { CommentaryRepositoryInMemory } from "../repositories/in-memory/Commenta
 import { CreateCommentaryService } from "./CreateCommentaryService"
 import { DeleteCommentaryService } from "./DeleteCommentaryService";
 
-describe("Create Commentary", () => {
+describe("Delete Commentary", () => {
   let commentaryRepositoryInMemory: CommentaryRepositoryInMemory;
   let videosRepositoryInMemory: VideosRepositoryInMemory;
   let usersRepositoryInMemory: UsersRepositoryInMemory;
@@ -50,7 +50,7 @@ describe("Create Commentary", () => {
     expect(commentaries.length).toBe(0)
   })
 
-  it("Should not be able delete a commentary because not have an user", async () => {
+  it("Should not be able delete a commentary because no have an user", async () => {
     const user = await usersRepositoryInMemory.create({ email: 'user_email@hotmail.com', name: 'user_name' });
 
     const video = await videosRepositoryInMemory.create({ url: 'http://www.teste.com', category: 'FIIS' as CategoryType })
