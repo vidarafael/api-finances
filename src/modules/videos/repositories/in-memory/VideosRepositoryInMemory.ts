@@ -1,9 +1,9 @@
-import { IVideoDTO } from "modules/videos/dtos/IVideoDTO";
-import { Video } from "modules/videos/infra/typeorm/entities/Video";
+import { IVideoDTO } from "../../dtos/IVideoDTO";
+import { Video } from "../../infra/typeorm/entities/Video";
 import { IVideosRepository } from "../IVideosRepository";
 
 class VideosRepositoryInMemory implements IVideosRepository {
-  private videos: Video[]
+  private videos: Video[] = [];
 
   async create({ url, category }: IVideoDTO): Promise<IVideoDTO> {
     const video = new Video()

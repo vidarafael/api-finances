@@ -13,7 +13,6 @@
       "experimentalDecorators": true,
       "sourceMap": true,
       "rootDir": "./",
-      "baseUrl": "./src",
       "esModuleInterop": true,
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,

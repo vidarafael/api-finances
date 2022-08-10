@@ -5,7 +5,7 @@ import { ICommentaryRepository } from "../ICommentaryRepository";
 
 
 class CommentaryRepositoryInMemory implements ICommentaryRepository {
-  private commentaries: Commentary[]
+  private commentaries: Commentary[] = [];
 
   async create({ user_id, video_id, description }: ICommentaryDTO): Promise<ICommentaryDTO> {
     const commentary = new Commentary()
