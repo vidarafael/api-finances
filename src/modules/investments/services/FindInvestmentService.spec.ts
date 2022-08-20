@@ -1,21 +1,22 @@
 import dayjs from "dayjs"
 import utc from "dayjs/plugin/utc"
+import { AppError } from "../../../shared/errors/AppError";
 import { GoalsRepositoryInMemory } from "../../goals/repositories/in-memory/GoalsRepositoryInMemory";
 import { CreateGoalService } from "../../goals/services/CreateGoalService";
 import { UsersRepositoryInMemory } from "../../users/repositories/in-memory/UsersRepositoryInMemory";
 import { InvestmentsRepositoryInMemory } from "../repositories/in-memory/InvestmentsRepositoryInMemory";
 import { CreateInvestmentService } from "./CreateInvestmentService";
-import { DeleteInvestmentService } from "./DeleteInvestmentService";
+import { FindInvestmentService } from "./FindInvestmentService";
 
 dayjs.extend(utc)
 
-describe("Delete Investment", () => {
+describe("Find Investment", () => {
   let goalsRepositoryInMemory: GoalsRepositoryInMemory;
   let usersRepositoryInMemory: UsersRepositoryInMemory;
   let investmentsRepositoryInMemory: InvestmentsRepositoryInMemory;
   let createGoalService: CreateGoalService;
   let createInvestmentService: CreateInvestmentService;
-  let deleteInvestmentService: DeleteInvestmentService;
+  let findInvestmentService: FindInvestmentService;
 
   beforeEach(async () => {
     investmentsRepositoryInMemory = new InvestmentsRepositoryInMemory()
@@ -29,12 +30,12 @@ describe("Delete Investment", () => {
       investmentsRepositoryInMemory,
       goalsRepositoryInMemory
     )
-    deleteInvestmentService = new DeleteInvestmentService(
-      investmentsRepositoryInMemory,
+    findInvestmentService = new FindInvestmentService(
+      investmentsRepositoryInMemory
     )
   })
 
-  it("Should be able delete a investment", async () => {
+  it("Should be able find a investment", async () => {
     const user = await usersRepositoryInMemory.create({ email: 'user_email@hotmail.com', name: 'user_name' });
 
     const goal = await createGoalService.execute({
@@ -52,17 +53,18 @@ describe("Delete Investment", () => {
       priority: 'high'
     })
 
-    expect(investment).toMatchObject({
-      id: investment.id,
-      dayOfInvestment: new Date(date),
-      goal_id: goal.id,
-      priority: 'high'
+    const investmentFinded = await findInvestmentService.execute(investment.id)
+
+    expect(investmentFinded).toMatchObject({
+      id: investmentFinded.id,
+      dayOfInvestment: investment.dayOfInvestment,
+      goal_id: investment.goal_id,
+      priority: investment.priority
     })
+  })
 
-    await deleteInvestmentService.execute(investment.id)
 
-    const investmentFinded = await investmentsRepositoryInMemory.findByGoal(goal.id)
-
-    expect(investmentFinded).toBeUndefined()
+  it("Should not be able find an investment because investment not exists", async () => {
+    expect(findInvestmentService.execute('id_not_exists')).rejects.toEqual(new AppError("Investment not found"))
   })
 })
