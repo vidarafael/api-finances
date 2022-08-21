@@ -25,7 +25,7 @@ class TransactionsInvestmentsRepositoryInMemory implements ITransactionsInvestme
   }
 
   async findByInvestment(investment_id: string): Promise<ITransactionsInvestmentsDTO[]> {
-    const transactionsInvestment = this.transactionsInvestments.filter((transactionInvestment) => { transactionInvestment.investment_id === investment_id })
+    const transactionsInvestment = this.transactionsInvestments.filter(transactionInvestment => transactionInvestment.investment_id === investment_id)
 
     return transactionsInvestment
   }
