@@ -1,6 +1,7 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc"
 import { OperationType } from "../../../shared/dto/IOperationTypeDTO";
+import { AppError } from "../../../shared/errors/AppError";
 import { GoalsRepositoryInMemory } from "../../goals/repositories/in-memory/GoalsRepositoryInMemory";
 import { CreateGoalService } from "../../goals/services/CreateGoalService";
 import { InvestmentsRepositoryInMemory } from "../../investments/repositories/in-memory/InvestmentsRepositoryInMemory";
@@ -8,11 +9,11 @@ import { CreateInvestmentService } from "../../investments/services/CreateInvest
 import { UsersRepositoryInMemory } from "../../users/repositories/in-memory/UsersRepositoryInMemory";
 import { TransactionsInvestmentsRepositoryInMemory } from "../repositories/in-memory/TransactionsInvestmentsRepositoryInMemory";
 import { CreateTransactionInvestmentService } from "./CreateTransactionInvestmentService";
-import { DeleteTransactionInvestmentService } from "./DeleteTransactionInvestmentService";
+import { ListTransactionsInvestmentsService } from "./ListTransactionsInvestmentsService";
 
 dayjs.extend(utc)
 
-describe("Delete Investment Transaction", () => {
+describe("List Investments Transactions", () => {
   let goalsRepositoryInMemory: GoalsRepositoryInMemory;
   let usersRepositoryInMemory: UsersRepositoryInMemory;
   let investmentsRepositoryInMemory: InvestmentsRepositoryInMemory;
@@ -20,7 +21,7 @@ describe("Delete Investment Transaction", () => {
   let createGoalService: CreateGoalService;
   let createInvestmentService: CreateInvestmentService;
   let createTransactionInvestmentService: CreateTransactionInvestmentService;
-  let deleteTransactionInvestmentService: DeleteTransactionInvestmentService;
+  let listTransactionsInvestmentsService: ListTransactionsInvestmentsService;
 
   beforeEach(async () => {
     investmentsRepositoryInMemory = new InvestmentsRepositoryInMemory()
@@ -39,12 +40,13 @@ describe("Delete Investment Transaction", () => {
       investmentsRepositoryInMemory,
       transactionsInvestmentsRepositoryInMemory
     )
-    deleteTransactionInvestmentService = new DeleteTransactionInvestmentService(
+    listTransactionsInvestmentsService = new ListTransactionsInvestmentsService(
+      investmentsRepositoryInMemory,
       transactionsInvestmentsRepositoryInMemory
     )
   })
 
-  it("Should be able delete an investment transaction", async () => {
+  it("Should be able list all investments transactions", async () => {
     const user = await usersRepositoryInMemory.create({ email: 'user_email@hotmail.com', name: 'user_name' });
 
     const goal = await createGoalService.execute({
@@ -62,18 +64,29 @@ describe("Delete Investment Transaction", () => {
       priority: 'high'
     })
 
-    const transactionInvestment = await createTransactionInvestmentService.execute({
+    await createTransactionInvestmentService.execute({
       investment_id: investment.id,
       category: 'comida',
-      description: 'comida',
+      description: 'macarrão',
+      type: 'deposit' as OperationType,
+      value: 250
+    })
+
+    await createTransactionInvestmentService.execute({
+      investment_id: investment.id,
+      category: 'comida',
+      description: 'outback',
       type: 'deposit' as OperationType,
       value: 500
     })
 
-    await deleteTransactionInvestmentService.execute(transactionInvestment.id)
+    const allTransactions = await listTransactionsInvestmentsService.execute(investment.id)
 
-    const allTransactions = await transactionsInvestmentsRepositoryInMemory.findByInvestment(investment.id)
+    expect(allTransactions.length).toBe(2)
+  })
 
-    expect(allTransactions.length).toBe(0)
+  it("Should not be able list all investments transactions because no have investment", async () => {
+    expect(listTransactionsInvestmentsService.execute('id_not_exists'))
+      .rejects.toEqual(new AppError("Investment does not exist"))
   })
 })
