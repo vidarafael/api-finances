@@ -3,7 +3,6 @@ import { ITransactionsWalletsDTO } from "../../dto/ITransactionsWalletsDTO";
 import { TransactionWallet } from "../../infra/typeorm/entities/TransactionWallet";
 import { ITransactionsWalletsRepository } from "../ITransactionsWalletsRepository";
 
-
 class TransactionsWalletsRepositoryInMemory implements ITransactionsWalletsRepository {
   private transactionsWallets: TransactionWallet[] = [];
 
