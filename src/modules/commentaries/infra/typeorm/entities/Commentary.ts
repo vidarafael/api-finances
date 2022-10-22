@@ -21,7 +21,7 @@ class Commentary {
   @Column({ type: "varchar" })
   user_id: string;
 
-  @ManyToOne(() => User, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @ManyToOne(() => User, { onDelete: 'CASCADE', onUpdate: 'CASCADE', eager: true })
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User;
 
