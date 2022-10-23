@@ -1,6 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryColumn, UpdateDateColumn } from "typeorm";
 import { v4 as uuidV4 } from "uuid";
 import { ColumnNumericTransformer } from "../../../../../shared/infra/typeorm/transformers/ColumnNumericTransformer";
+import { Investment } from "../../../../investments/infra/typeorm/entities/Investment";
 import { User } from "../../../../users/infra/typeorm/entities/User";
 
 @Entity("goals")
@@ -20,6 +21,9 @@ class Goal {
   @ManyToOne(() => User, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: "user_id", referencedColumnName: "id" })
   user: User;
+
+  @OneToOne(() => Investment, (investment) => investment.goal, { onDelete: 'CASCADE', onUpdate: 'CASCADE', eager: true })
+  investment: Investment;
 
   @CreateDateColumn({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
   created_at: Date;
