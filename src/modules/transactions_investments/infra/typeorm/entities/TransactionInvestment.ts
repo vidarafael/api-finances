@@ -21,7 +21,7 @@ class TransactionInvestment {
   @Column({ type: "varchar" })
   investment_id: string;
 
-  @ManyToOne(() => Investment, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @ManyToOne(() => Investment, (investment) => investment.transaction_investment, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn({ name: "investment_id", referencedColumnName: "id" })
   investment: Investment;
 
