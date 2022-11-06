@@ -11,7 +11,7 @@ class FavoriteVideo {
   @Column({ type: "varchar" })
   video_id: string;
 
-  @OneToOne(() => Video, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+  @OneToOne(() => Video, { onDelete: 'CASCADE', onUpdate: 'CASCADE', eager: true })
   @JoinColumn({ name: "video_id", referencedColumnName: "id" })
   video: Video;
 
