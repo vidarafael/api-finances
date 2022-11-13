@@ -38,8 +38,12 @@ class CreateCommentaryService {
     }
 
     const commentary = await this.commentaryRepository.create({ user_id, video_id, description })
+    const objectReturn = {
+      ...commentary,
+      user: userAlreadyExists
+    }
 
-    return commentary
+    return objectReturn
   }
 }
 
